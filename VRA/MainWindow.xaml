@@ -42,6 +42,16 @@
                 <DataGridTextColumn Header="Часы" Binding="{Binding Path=ClassHours}" />
             </DataGrid.Columns>
         </DataGrid>
+        <DataGrid x:Name="dgLoads" IsReadOnly="True" AutoGenerateColumns="False" Visibility="Hidden" VerticalAlignment="Center" Height="406" Margin="0,0,1,0" Grid.Row="1" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=LoadId}" />
+                <DataGridTextColumn Header="Учитель" Binding="{Binding Path=Teacher.TeacherId}" />
+                <DataGridTextColumn Header="Группа" Binding="{Binding Path=GroupNumber}" />
+                <DataGridTextColumn Header="Дата" Binding="{Binding Path=LoadDate}" />
+                <DataGridTextColumn Header="Предмет" Binding="{Binding Path=Subject.Title}" />
+                <DataGridTextColumn Header="Тип занятия" Binding="{Binding Path=TypeOfClass.TypeOfClassId}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <Menu Name="mainMenu" Grid.ColumnSpan="3">
             <MenuItem Name="DataBase" Header="База данных">
                 <MenuItem Name="dataBaseS" Header="Настроить соединение с БД"
@@ -75,6 +85,14 @@
                 </Button.ToolTip>
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Типы занятий"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnLoad" Height="50" Width="100" Click="btnLoads_Click" Margin="0, 0, 0, 3">
+                <Button.ToolTip>
+                    <TextBlock><Run Text="Информация о нагрузке"/></TextBlock>
+                </Button.ToolTip>
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Нагрузка"/></TextBlock>
                 </StackPanel>
             </Button>
         </StackPanel>

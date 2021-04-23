@@ -30,6 +30,11 @@ namespace VRA.BusinessLayer
             return new TypeOfClassProcessDb();
         }
 
+        public static ILoadProcess GetLoadProcess()
+        {
+            return new LoadProcess();
+        }
+
         public static ISettingsProcess GetSettingsProcess()
         {
             return new SettingsProcess();

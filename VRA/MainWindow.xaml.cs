@@ -48,6 +48,11 @@ namespace VRA
                     typeofclass_window.ShowDialog();
                     dgTypeOfClasses.ItemsSource = ProcessFactory.GetTypeOfClassProcess().GetList();
                     break;
+                case "load":
+                    var load_window = new AddLoadWindow();
+                    load_window.ShowDialog();
+                    dgLoads.ItemsSource = ProcessFactory.GetLoadProcess().GetList();
+                    break;
                 default:
                     MessageBox.Show("Это еще не готово", "Проверка");
                     break;
@@ -65,6 +70,7 @@ namespace VRA
             //Скрываем все остальные элементы Data Grid
             this.dgSubjects.Visibility = Visibility.Hidden;
             this.dgTypeOfClasses.Visibility = Visibility.Hidden;
+            this.dgLoads.Visibility = Visibility.Hidden;
             //Отображаем внизу окна название таблицы
             this.statusLabel.Content = "Работа с таблицей: Учителя";
         }
@@ -81,6 +87,9 @@ namespace VRA
                     break;
                 case "typeofclass":
                     dgTypeOfClasses.ItemsSource = ProcessFactory.GetTypeOfClassProcess().GetList();
+                    break;
+                case "load":
+                    dgLoads.ItemsSource = ProcessFactory.GetLoadProcess().GetList();
                     break;
                 default:
                     MessageBox.Show("Это еще не готово", "Проверка");
@@ -150,6 +159,25 @@ namespace VRA
                     //И перезагружаем список предметов
                     dgTypeOfClasses.ItemsSource = ProcessFactory.GetTypeOfClassProcess().GetList();
                     break;
+                case "load":
+                    //Получаем выделенную строку с объектом тип занятия
+                    LoadDto item_l = dgLoads.SelectedItem as LoadDto;
+                    //если там не тип занятия или пользователь ничего не выбрал сообщаем об этом
+                    if (item_l == null)
+                    {
+                        MessageBox.Show("Выберите запись для удаления", "Удаление");
+                        return;
+                    }
+                    //Просим подтвердить удаление
+                    MessageBoxResult result_l = MessageBox.Show("Удалить нагрузку " + item_l.LoadId + "?", "Удаление нагрузки", MessageBoxButton.YesNo, MessageBoxImage.Warning);;
+                    //Если пользователь не подтвердил, выходим
+                    if (result_l != MessageBoxResult.Yes)
+                        return;
+                    //Если все проверки пройдены и подтверждение получено, удаляем нагрузку
+                    ProcessFactory.GetLoadProcess().Delete(item_l.LoadId);
+                    //И перезагружаем список нагрузок
+                    dgLoads.ItemsSource = ProcessFactory.GetLoadProcess().GetList();
+                    break;
                 //Даём понять пользователю, что таблица не выбрана
                 default:
                     MessageBox.Show("Это еще не готово", "Проверка");
@@ -198,6 +226,7 @@ namespace VRA
                     //Перезагружаем список объектов
                     dgSubjects.ItemsSource = ProcessFactory.GetSubjectProcess().GetList();
                     break;
+
                 case "typeofclass":
                     //Получаем выделенную строку с объектом типа занятия
                     TypeOfClassDto item_t = dgTypeOfClasses.SelectedItem as TypeOfClassDto;
@@ -216,6 +245,26 @@ namespace VRA
                     //Перезагружаем список объектов
                     dgTypeOfClasses.ItemsSource = ProcessFactory.GetTypeOfClassProcess().GetList();
                     break;
+
+                case "load":
+                    //Получаем выделенную строку с объектом 
+                    LoadDto item_l = dgLoads.SelectedItem as LoadDto;
+                    //если там не нагрузка или пользователь ничего не выбрал сообщаем об этом
+                    if (item_l == null)
+                    {
+                        MessageBox.Show("Выберите запись для редактирования", "Редактирование");
+                        return;
+                    }
+                    //Создаем окно
+                    AddLoadWindow window_l = new AddLoadWindow();
+                    //Передаем объект на редактирование
+                    window_l.Load(item_l);
+                    //Отображаем окно с данными
+                    window_l.ShowDialog();
+                    //Перезагружаем список объектов
+                    dgLoads.ItemsSource = ProcessFactory.GetLoadProcess().GetList();
+                    break;
+
                 //Даём понять пользователю, что таблица не выбрана
                 default:
                     MessageBox.Show("Это еще не готово", "Проверка");
@@ -234,6 +283,7 @@ namespace VRA
             //Скрываем все остальные элементы Data Grid
             this.dgTeachers.Visibility = Visibility.Hidden;
             this.dgTypeOfClasses.Visibility = Visibility.Hidden;
+            this.dgLoads.Visibility = Visibility.Hidden;
             //Отображаем внизу окна название таблицы
             this.statusLabel.Content = "Работа с таблицей: Предметы";
         }
@@ -249,6 +299,7 @@ namespace VRA
             //Скрываем все остальные элементы Data Grid
             this.dgTeachers.Visibility = Visibility.Hidden;
             this.dgSubjects.Visibility = Visibility.Hidden;
+            this.dgLoads.Visibility = Visibility.Hidden;
             //Отображаем внизу окна название таблицы
             this.statusLabel.Content = "Работа с таблицей: Типы занятий";
         }
@@ -259,5 +310,15 @@ namespace VRA
             window.ShowDialog();
         }
 
+        private void btnLoads_Click(object sender, RoutedEventArgs e)
+        {
+            status = "load";
+            dgLoads.ItemsSource = ProcessFactory.GetLoadProcess().GetList();
+            this.dgLoads.Visibility = Visibility.Visible;
+            this.dgTeachers.Visibility = Visibility.Hidden;
+            this.dgSubjects.Visibility = Visibility.Hidden;
+            this.dgTypeOfClasses.Visibility = Visibility.Hidden;
+            this.statusLabel.Content = "Работа с таблицей: Нагрузка";
+        }
     }
 }
