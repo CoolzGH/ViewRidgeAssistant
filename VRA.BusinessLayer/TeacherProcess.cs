@@ -19,7 +19,7 @@ namespace VRA.BusinessLayer
             return Teachers.ContainsKey(id) ? Teachers[id] : null;
         }
 
-        public void Add(TeacherDto teacher) 
+        public void Add(TeacherDto teacher)
         {
             int max = Teachers.Keys.Count == 0 ? 1 : Teachers.Keys.Max(p => p) + 1;
             teacher.TeacherId = max;

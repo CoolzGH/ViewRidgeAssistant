@@ -10,5 +10,20 @@ namespace VRA.DataAccess
         {
             return new TeacherDao();
         }
+
+        public static ISubjectDao GetSubjectDao()
+        {
+            return new SubjectDao();
+        }
+
+        public static ITypeOfClassDao GetTypeOfClassDao()
+        {
+            return new TypeOfClassDao();
+        }
+
+        public static SettingsDao GetSettingsDao()
+        {
+            return new SettingsDao();
+        }
     }
 }

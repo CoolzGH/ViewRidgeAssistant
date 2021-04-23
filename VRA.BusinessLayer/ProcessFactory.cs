@@ -22,12 +22,17 @@ namespace VRA.BusinessLayer
 
         public static ISubjectProcess GetSubjectProcess()
         {
-            return new SubjectProcess();
+            return new SubjectProcessDb();
         }
 
         public static ITypeOfClassProcess GetTypeOfClassProcess()
         {
-            return new TypeOfClassProcess();
+            return new TypeOfClassProcessDb();
+        }
+
+        public static ISettingsProcess GetSettingsProcess()
+        {
+            return new SettingsProcess();
         }
     }
 }

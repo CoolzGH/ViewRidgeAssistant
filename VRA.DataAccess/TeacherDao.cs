@@ -79,7 +79,7 @@ namespace VRA.DataAccess
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "INSERT INTO ARTIST (SecondName, FirstName, MiddleName, AcademicDegree, Position, Experience) VALUES (@SecondName, @FirstName, @MiddleName, @AcademicDegree, @Position, @Experience)";
+                    cmd.CommandText = "INSERT INTO Teacher (SecondName, FirstName, MiddleName, AcademicDegree, Position, Experience) VALUES (@SecondName, @FirstName, @MiddleName, @AcademicDegree, @Position, @Experience)";
                     cmd.Parameters.AddWithValue("@SecondName", teacher.SecondName);
                     cmd.Parameters.AddWithValue("@FirstName", teacher.FirstName);
                     cmd.Parameters.AddWithValue("@MiddleName", teacher.MiddleName);
@@ -120,8 +120,9 @@ namespace VRA.DataAccess
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM Teacher WHERE TeacherID = @ID";
+                    cmd.CommandText = "DELETE FROM Teacher WHERE TeacherID = @ID; DBCC CHECKIDENT (Teacher, RESEED, @IDD)";
                     cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@IDD", id - 1);
                     cmd.ExecuteNonQuery();
                 }
             }

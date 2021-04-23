@@ -9,7 +9,7 @@ namespace VRA.BusinessLayer.Converters
     public class DtoConverter
     {
         public static TeacherDto Convert(Teacher teacher)
-        {  
+        {
             if (teacher == null)
                 return null;
             TeacherDto teacherDto = new TeacherDto();
@@ -48,6 +48,74 @@ namespace VRA.BusinessLayer.Converters
                 teacherDtos.Add(Convert(teacher));
             }
             return teacherDtos;
+        }
+
+        public static SubjectDto Convert(Subject subject)
+        {
+            if (subject == null)
+                return null;
+            SubjectDto subjectDto = new SubjectDto();
+            subjectDto.SubjectId = subject.SubjectID;
+            subjectDto.Title = subject.Title;
+            subjectDto.SubjectHours = subject.SubjectHours;
+            return subjectDto;
+        }
+
+        public static Subject Convert(SubjectDto subjectDto)
+        {
+            if (subjectDto == null)
+                return null;
+            Subject subject = new Subject();
+            subject.SubjectID = subjectDto.SubjectId;
+            subject.Title = subjectDto.Title;
+            subject.SubjectHours = subjectDto.SubjectHours;
+            return subject;
+        }
+
+        public static IList<SubjectDto> Convert(IList<Subject> subjects)
+        {
+            if (subjects == null)
+                return null;
+            IList<SubjectDto> subjectDtos = new List<SubjectDto>();
+            foreach (var subject in subjects)
+            {
+                subjectDtos.Add(Convert(subject));
+            }
+            return subjectDtos;
+        }
+
+        public static TypeOfClassDto Convert(TypeOfClass typeofclass)
+        {
+            if (typeofclass == null)
+                return null;
+            TypeOfClassDto typeofclassDto = new TypeOfClassDto();
+            typeofclassDto.TypeOfClassId = typeofclass.TypeOfClassID;
+            typeofclassDto.TypeOfClassName = typeofclass.TypeOfClassName;
+            typeofclassDto.ClassHours = typeofclass.ClassHours;
+            return typeofclassDto;
+        }
+
+        public static TypeOfClass Convert(TypeOfClassDto typeofclassDto)
+        {
+            if (typeofclassDto == null)
+                return null;
+            TypeOfClass typeofclass = new TypeOfClass();
+            typeofclass.TypeOfClassID = typeofclassDto.TypeOfClassId;
+            typeofclass.TypeOfClassName = typeofclassDto.TypeOfClassName;
+            typeofclass.ClassHours = typeofclassDto.ClassHours;
+            return typeofclass;
+        }
+
+        public static IList<TypeOfClassDto> Convert(IList<TypeOfClass> typeofclasses)
+        {
+            if (typeofclasses == null)
+                return null;
+            IList<TypeOfClassDto> typeofclassDtos = new List<TypeOfClassDto>();
+            foreach (var typeofclass in typeofclasses)
+            {
+                typeofclassDtos.Add(Convert(typeofclass));
+            }
+            return typeofclassDtos;
         }
     }
 }

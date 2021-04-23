@@ -63,7 +63,7 @@ namespace VRA
 
             TypeOfClassDto typeofclass = new TypeOfClassDto();
 
-            typeofclass.TypeOfClass = cbTypeOfClass.SelectedItem.ToString();
+            typeofclass.TypeOfClassName = cbTypeOfClass.SelectedItem.ToString();
             typeofclass.ClassHours = classhours;
 
             ITypeOfClassProcess typeofclassProcess = ProcessFactory.GetTypeOfClassProcess();
@@ -90,12 +90,12 @@ namespace VRA
         public void Load(TypeOfClassDto typeofclass)
         {
             //если объект не существует, выходим
-            if (typeofclass == null || !TypeOfClasses.Contains(typeofclass.TypeOfClass))
+            if (typeofclass == null || !TypeOfClasses.Contains(typeofclass.TypeOfClassName))
                 return;
             //сохраняем id типа занятия
             _id = typeofclass.TypeOfClassId;
             //заполняем визуальные компоненты для отображения данных
-            cbTypeOfClass.SelectedItem = typeofclass.TypeOfClass;
+            cbTypeOfClass.SelectedItem = typeofclass.TypeOfClassName;
             if (typeofclass.ClassHours.HasValue)
             {
                 tbClassHours.Text = typeofclass.ClassHours.ToString();

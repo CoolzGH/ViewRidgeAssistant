@@ -18,7 +18,7 @@ namespace VRA.Dto
         /// <summary>
         /// Тип занятия
         /// </summary>
-        public string TypeOfClass { get; set; }
+        public string TypeOfClassName { get; set; }
 
         /// <summary>
         /// Часы занятия

@@ -91,7 +91,7 @@ namespace VRA
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             //Проверяем, с какой таблицей работаем
-            switch (status) 
+            switch (status)
             {
                 case "teacher":
                     //Получаем выделенную строку с объектом учителя
@@ -103,7 +103,7 @@ namespace VRA
                         return;
                     }
                     //Просим подтвердить удаление
-                    MessageBoxResult result = MessageBox.Show("Удалить учителя " +item.FirstName + ' ' + item.SecondName + "?","Удаление учителя", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    MessageBoxResult result = MessageBox.Show("Удалить учителя " + item.FirstName + ' ' + item.SecondName + "?", "Удаление учителя", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     //Если пользователь не подтвердил, выходим
                     if (result != MessageBoxResult.Yes)
                         return;
@@ -141,7 +141,7 @@ namespace VRA
                         return;
                     }
                     //Просим подтвердить удаление
-                    MessageBoxResult result_t = MessageBox.Show("Удалить тип занятия " + item_t.TypeOfClass + " " + item_t.ClassHours + "?", "Удаление типа занятия", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    MessageBoxResult result_t = MessageBox.Show("Удалить тип занятия " + item_t.TypeOfClassName + " " + item_t.ClassHours + "?", "Удаление типа занятия", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     //Если пользователь не подтвердил, выходим
                     if (result_t != MessageBoxResult.Yes)
                         return;
@@ -159,7 +159,7 @@ namespace VRA
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            switch (status) 
+            switch (status)
             {
                 case "teacher":
                     //Получаем выделенную строку с объектом учителя
@@ -252,5 +252,12 @@ namespace VRA
             //Отображаем внизу окна название таблицы
             this.statusLabel.Content = "Работа с таблицей: Типы занятий";
         }
+
+        private void btnDatabase_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow window = new SettingsWindow();
+            window.ShowDialog();
+        }
+
     }
 }

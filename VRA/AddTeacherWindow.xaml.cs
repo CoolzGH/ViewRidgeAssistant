@@ -105,7 +105,7 @@ namespace VRA
             //сохраняем id учителя
             _id = teacher.TeacherId;
             //заполняем визуальные компоненты для отображения данных
-            tbFirstName.Text = teacher.FirstName; 
+            tbFirstName.Text = teacher.FirstName;
             tbSecondName.Text = teacher.SecondName;
             tbMiddleName.Text = teacher.MiddleName;
             tbAcademicDegree.Text = teacher.AcademicDegree;
@@ -113,7 +113,7 @@ namespace VRA
             if (teacher.Experience.HasValue)
             {
                 tbExperience.Text = teacher.Experience.ToString();
-            }    
+            }
         }
 
     }
