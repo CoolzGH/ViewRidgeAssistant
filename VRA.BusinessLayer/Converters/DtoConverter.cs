@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using VRA.Dto;
 using VRA.DataAccess.Entities;
+using VRA.DataAccess;
 
 namespace VRA.BusinessLayer.Converters
 {
@@ -116,6 +117,46 @@ namespace VRA.BusinessLayer.Converters
                 typeofclassDtos.Add(Convert(typeofclass));
             }
             return typeofclassDtos;
+        }
+
+        public static LoadDto Convert(Load load)
+        {
+            if (load == null)
+                return null;
+            LoadDto loadDto = new LoadDto();
+            loadDto.LoadId = load.LoadID;
+            loadDto.Teacher = Convert(DaoFactory.GetTeacherDao().Get(load.TeacherID));
+            loadDto.GroupNumber = load.GroupNumber;
+            loadDto.LoadDate = load.LoadDate;
+            loadDto.Subject = Convert(DaoFactory.GetSubjectDao().Get(load.SubjectID));
+            loadDto.TypeOfClass = Convert(DaoFactory.GetTypeOfClassDao().Get(load.TypeOfClassID));
+            return loadDto;
+        }
+
+        public static Load Convert(LoadDto loadDto)
+        {
+            if (loadDto == null)
+                return null;
+            Load load = new Load();
+            load.LoadID = loadDto.LoadId;
+            load.TeacherID = loadDto.Teacher.TeacherId;
+            load.GroupNumber = loadDto.GroupNumber;
+            load.LoadDate = loadDto.LoadDate;
+            load.SubjectID = loadDto.Subject.SubjectId;
+            load.TypeOfClassID = loadDto.TypeOfClass.TypeOfClassId;
+            return load;
+        }
+
+        public static IList<LoadDto> Convert(IList<Load> loads)
+        {
+            if (loads == null)
+                return null;
+            IList<LoadDto> loadDtos = new List<LoadDto>();
+            foreach (var load in loads)
+            {
+                loadDtos.Add(Convert(load));
+            }
+            return loadDtos;
         }
     }
 }

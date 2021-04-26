@@ -32,7 +32,7 @@ namespace VRA.BusinessLayer
 
         public static ILoadProcess GetLoadProcess()
         {
-            return new LoadProcess();
+            return new LoadProcessDb();
         }
 
         public static ISettingsProcess GetSettingsProcess()

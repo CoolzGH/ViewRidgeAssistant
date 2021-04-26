@@ -25,5 +25,10 @@ namespace VRA.DataAccess
         {
             return new SettingsDao();
         }
+
+        public static LoadDao GetLoadDao()
+        {
+            return new LoadDao();
+        }
     }
 }
