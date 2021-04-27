@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace VRA.DataAccess
 {
-    public class TypeOfClassDao : ITypeOfClassDao
+    public class TypeOfClassDao : BaseDao, ITypeOfClassDao
     {
         private static TypeOfClass LoadTypeOfClass(SqlDataReader reader)
         {
@@ -113,23 +113,6 @@ namespace VRA.DataAccess
                     cmd.ExecuteNonQuery();
                 }
             }
-        }
-
-        /// <summary>
-        /// Возвращает строку подключения к базе
-        /// </summary>
-        /// <returns></returns>
-        private static string GetConnectionString()
-        {
-            return ConfigurationManager.ConnectionStrings["vradb"].ConnectionString;
-        }
-        /// <summary>
-        /// Возвращает объект подключения к базе
-        /// </summary>
-        /// <returns></returns>
-        private static SqlConnection GetConnection()
-        {
-            return new SqlConnection(GetConnectionString());
         }
     }
 }

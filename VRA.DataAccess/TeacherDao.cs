@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace VRA.DataAccess
 {
-    public class TeacherDao : ITeacherDao
+    public class TeacherDao : BaseDao, ITeacherDao
     {
         private static Teacher LoadTeacher(SqlDataReader reader)
         {
@@ -125,23 +125,6 @@ namespace VRA.DataAccess
                     cmd.ExecuteNonQuery();
                 }
             }
-        }
-
-        /// <summary>
-        /// Возвращает строку подключения к базе
-        /// </summary>
-        /// <returns></returns>
-        private static string GetConnectionString()
-        {
-            return ConfigurationManager.ConnectionStrings["vradb"].ConnectionString;
-        }
-        /// <summary>
-        /// Возвращает объект подключения к базе
-        /// </summary>
-        /// <returns></returns>
-        private static SqlConnection GetConnection()
-        {
-            return new SqlConnection(GetConnectionString());
         }
     }
 }
