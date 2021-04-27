@@ -24,7 +24,19 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="ID Учителя *" Grid.Row="0" Grid.Column="0" Margin="3,3,3,3"/>
-        <ComboBox x:Name="cbTeacher" Grid.Row="0" Grid.Column="1" Margin="3,3,3,3" ItemsSource="{Binding}" DisplayMemberPath="TeacherId"/>
+        <ComboBox x:Name="cbTeacher" Grid.Row="0" Grid.Column="1" Margin="3,3,3,3" ItemsSource="{Binding}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=TeacherId}"/>
+                        <TextBlock Text=" - "/>
+                        <TextBlock Text="{Binding Path=FirstName}"/>
+                        <TextBlock Text=" - "/>
+                        <TextBlock Text="{Binding Path=SecondName}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <TextBlock Text="Группа *" Grid.Row="1" Grid.Column="0" Margin="3,3,3,3"/>
         <TextBox x:Name="tbGroupNumber" Grid.Row="1" Grid.Column="1" Margin="3,3,3,3"/>
         <TextBlock Text="Дата" Grid.Row="2" Grid.Column="0" Margin="3,3,3,3"/>
@@ -32,7 +44,19 @@
         <TextBlock Text="Предмет *" Grid.Row="3" Grid.Column="0" Margin="3,3,3,3"/>
         <ComboBox x:Name="cbSubject" Grid.Row="3" Grid.Column="1" Margin="3,3,3,3" ItemsSource="{Binding}" DisplayMemberPath="Title"/>
         <TextBlock Text="Тип занятия *" Grid.Row="4" Grid.Column="0" Margin="3,3,3,3"/>
-        <ComboBox x:Name="cbTypeOfClass" Grid.Row="4" Grid.Column="1" Margin="3,3,3,3" ItemsSource="{Binding}" DisplayMemberPath="TypeOfClassId"/>
+        <ComboBox x:Name="cbTypeOfClass" Grid.Row="4" Grid.Column="1" Margin="3,3,3,3" ItemsSource="{Binding}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=TypeOfClassId}"/>
+                        <TextBlock Text=" - "/>
+                        <TextBlock Text="{Binding Path=TypeOfClassName}"/>
+                        <TextBlock Text=" - "/>
+                        <TextBlock Text="{Binding Path=ClassHours}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <TextBlock Grid.Row="5" FontStyle="Italic" FontSize="11" TextAlignment="Center" Margin="0,6,-1,3" Grid.ColumnSpan="2" > обязательные для заполнение поля помечены "*"</TextBlock>
 
         <Button x:Name="btnSave" Grid.Row="6" Grid.Column="0" Content="Сохранить" Margin="10,2,8,8" Click="btnSave_Click" />
