@@ -117,9 +117,8 @@ namespace VRA.DataAccess
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM Load WHERE LoadID = @ID; DBCC CHECKIDENT (Load, RESEED, @IDD)";
+                    cmd.CommandText = "DELETE FROM Load WHERE LoadID = @ID";
                     cmd.Parameters.AddWithValue("@ID", id);
-                    cmd.Parameters.AddWithValue("@IDD", id - 1);
                     cmd.ExecuteNonQuery();
                 }
             }

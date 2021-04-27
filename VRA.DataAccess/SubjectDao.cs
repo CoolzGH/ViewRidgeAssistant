@@ -108,9 +108,8 @@ namespace VRA.DataAccess
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM Subject WHERE SubjectID = @ID; DBCC CHECKIDENT (Subject, RESEED, @IDD)";
+                    cmd.CommandText = "DELETE FROM Subject WHERE SubjectID = @ID";
                     cmd.Parameters.AddWithValue("@ID", id);
-                    cmd.Parameters.AddWithValue("@IDD", id - 1);
                     cmd.ExecuteNonQuery();
                 }
             }

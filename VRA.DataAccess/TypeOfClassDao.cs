@@ -108,9 +108,8 @@ namespace VRA.DataAccess
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM TypeOfClass WHERE TypeOfClassID = @ID; DBCC CHECKIDENT (TypeOfClass, RESEED, @IDD)";
+                    cmd.CommandText = "DELETE FROM TypeOfClass WHERE TypeOfClassID = @ID";
                     cmd.Parameters.AddWithValue("@ID", id);
-                    cmd.Parameters.AddWithValue("@IDD", id - 1);
                     cmd.ExecuteNonQuery();
                 }
             }
