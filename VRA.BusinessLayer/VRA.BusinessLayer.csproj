@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="LoadProcess.cs" />
+    <Compile Remove="SubjectProcess.cs" />
+    <Compile Remove="TeacherProcess.cs" />
+    <Compile Remove="TypeOfClassProcess.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\VRA.DataAccess\VRA.DataAccess.csproj" />
     <ProjectReference Include="..\VRA.Dto\VRA.Dto.csproj" />
   </ItemGroup>

@@ -126,5 +126,28 @@ namespace VRA.DataAccess
                 }
             }
         }
+
+        public IList<Teacher> SearchTeachers(string SecondName)
+        {
+            IList<Teacher> teachers = new List<Teacher>();
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT TeacherID, SecondName, FirstName, MiddleName, AcademicDegree, Position, Experience FROM Teacher WHERE SecondName like @SecondName";
+                    cmd.Parameters.AddWithValue("@SecondName","%"+SecondName +"%");
+                    using (var dataReader = cmd.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+                            teachers.Add(LoadTeacher(dataReader));
+                        }
+                    }
+                }
+            }
+            return teachers;
+        }
+
     }
 }

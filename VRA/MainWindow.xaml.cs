@@ -320,5 +320,24 @@ namespace VRA
             this.dgTypeOfClasses.Visibility = Visibility.Hidden;
             this.statusLabel.Content = "Работа с таблицей: Нагрузка";
         }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            SearchWindow search = new SearchWindow(status);
+            {
+                switch (status)
+                {
+                    case "teacher":
+                        search.ShowDialog();
+                        if (search.exec)
+                        {
+                            this.dgTeachers.ItemsSource = search.FindedTeachers;
+                        }
+                        break;
+                    default: MessageBox.Show("Для поиска необходимо выбрать таблицу!"); break;
+                }
+            }
+        }
+
     }
 }

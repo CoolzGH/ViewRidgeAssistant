@@ -129,6 +129,14 @@
                     <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Обновить"/></TextBlock>
                 </StackPanel>
             </Button>
+            <Button  x:Name="btnSearch" Height="50" Width="100"  Click="btnSearch_Click" Visibility="Visible" Margin="0, 0, 0, 3">
+                <Button.ToolTip>
+                    <TextBlock><Run Text="Поиск"/></TextBlock>
+                </Button.ToolTip>
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Поиск"/></TextBlock>
+                </StackPanel>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

@@ -36,5 +36,11 @@ namespace VRA.BusinessLayer
         {
             _teacherDao.Delete(id);
         }
+
+        public IList<TeacherDto> SearchTeachers(string SecondName)
+        {
+            return DtoConverter.Convert(_teacherDao.SearchTeachers(SecondName));
+        }
+
     }
 }
